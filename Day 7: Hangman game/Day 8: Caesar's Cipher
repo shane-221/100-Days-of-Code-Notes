@@ -1,0 +1,47 @@
+mport time
+
+from Asci import Caesar, Cipher
+
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+#Initialisations
+print(Caesar, Cipher)
+
+# encrypt function
+def caesar(plain_text, shift_amount): 
+  Output_text=""
+  
+  for char in plain_text: 
+    if char in alphabet: 
+      initial_index_number= alphabet.index(char)
+      if direction=="encode":
+        final_index_number=initial_index_number + shift_amount
+        new_letter=alphabet[final_index_number]
+        Output_text+=new_letter
+        
+      elif direction=="decode":
+        final_index_number=initial_index_number-shift_amount
+        new_letter=alphabet[final_index_number]
+        Output_text+=new_letter
+    else: 
+       Output_text+=char
+    
+  print(f"Your {direction}d text is: {Output_text}")
+
+#Initialisations with a loop. 
+should_continue=True
+while should_continue:
+  #general information
+  direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+  text = input("Type your message:\n").lower()
+  # shifts that require a large set of numbers. 
+  shift = int(input("Type the shift number:\n"))
+  shift=shift%26
+  #run the function 
+  caesar(plain_text=text, shift_amount=shift)
+  #replay the function 
+  replay=input("Type 'yes' if you want to go again.Otherwise type 'no'.\n")
+  if replay=="no":
+    should_continue=False
+    print("Goodbye")
+  
