@@ -1,0 +1,57 @@
+import clear 
+import random
+import time
+
+from asci import stages, logo
+from H_Word_list import word_list
+
+#logo
+print(logo)
+time.sleep(2)
+print("Welcome to Hangman!\n")
+#Choosing the random word
+chosen_word=random.choice(word_list)
+
+
+#Display function: 
+display=[]
+char=len(chosen_word)
+for _x in range(0, char):
+  display+='_'
+
+
+#Lives function 
+lives=6
+
+
+#User guesses a letter + converts it to lower case +if correct: replace + end of thegame
+end_of_game=True 
+
+while end_of_game: 
+  print(f"There are {char} letters in your word.\n")
+  print(display)
+  guess=input("Guess a letter:\n").lower()
+  clear()
+  
+  for x in range(0,char):
+    letter=chosen_word[x]
+    if letter==guess: 
+      display[x]=guess
+      if guess in display: 
+        print(f"You've already guessed the letter {guess}")
+  if guess not in chosen_word: 
+    print(f"You guessed {guess}, that's not in the word. You lose a life! ")
+    lives-=1
+    print(stages[lives])
+    if lives==0:
+      end_of_game=False
+      print(stages[0])
+      print("You lose")
+
+    
+    
+
+
+
+
+  
