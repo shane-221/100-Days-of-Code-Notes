@@ -1,1 +1,66 @@
+import random
+from Art import logo
+
+#Inital set up: 
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+computer_card=[]
+player_card=[]
+print(logo)
+
+#Game running: 
+  #Adding another card to the list 
+def another_card():
+  a=random.choice(cards)
+  b=random.choice(cards)
+  computer_card.append(a)
+  player_card.append(b)
+
+  #Opening set of card
+x=random.sample(cards, k=2)
+computer_card=x
+print(f"    Computer first card is:{computer_card[0]} ")
+
+y=random.sample(cards,k=2)
+player_card=y
+total_player=sum(player_card)
+print(f"    Your cards are: {player_card}, current score is {total_player} ")
+
+  #another card choice and its conclusions 
+another_card_choice=True
+while another_card_choice:
+  replay=input("Type 'y' to get another card, type 'n' to pass:\n")
+  if replay=='y':
+    another_card()
+    print(f"    Computer first card is:{computer_card[0]} ")
+    total_player=sum(player_card)
+    print(f"    Your cards are: {player_card}, current score is {total_player} ")
+    
+  if replay=='n':
+    another_card_choice=False
+
+  # Exit the while loop if necessary and the Final evaluation:
+print(computer_card)
+print(player_card)
+
+      #Check for an ace: 11 or a 1 
+total_computer=sum(computer_card)
+if 11 in computer_card and total_computer>20: 
+  i=computer_card.index(11)
+  computer_card[i]=1
+if 11 in player_card and total_player>21:
+  i=player_card.index(11)
+  player_card[i]=1
+  
+
+     # Final evaluations 
+if total_player>21 or total_computer==21: 
+  print("You lose! ")
+elif total_player==21 or total_computer>21: 
+  print("You win!")
+elif  total_computer>total_player:
+  print("You lose!")
+elif total_computer==total_player:
+  print("Its a draw ")
+elif total_player>total_computer: 
+  print("You win!")
 
